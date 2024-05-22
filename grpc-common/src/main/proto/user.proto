@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+package taurusx85;
+
+option java_package = "com.taurusx85.grpc.user";
+option java_multiple_files = true;
+
+message UserInput {
+    string name = 1;
+}
+
+message UserId {
+    int32 id = 1;
+}
+
+message UserMessage {
+    int32 id = 1;
+    string name = 2;
+}
+
+message DeletedUsers {
+    repeated int32 ids = 1;
+}
+
+message NameInput {
+    google.protobuf.StringValue name = 1;
+}
+
+service UserService {
+    rpc create(UserInput) returns (UserId);
+    rpc getById(UserId) returns (UserMessage);
+    rpc getByName(NameInput) returns (UserMessage);
+
+    rpc createMultiple(stream UserInput) returns (stream UserId);
+    rpc getAll(google.protobuf.Empty) returns (stream UserMessage);
+    rpc deleteMultiple(stream UserId) returns (DeletedUsers);
+}
