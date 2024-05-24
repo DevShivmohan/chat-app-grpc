@@ -1,0 +1,5 @@
+grpc:
+  client:
+    com-shiv-service:
+      address: static://localhost:8090 # This static address of nginx server
+      negotiationType: PLAINTEXT

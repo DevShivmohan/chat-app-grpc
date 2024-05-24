@@ -1,6 +1,6 @@
 
 allprojects {
-    group 'com.taurusx85.grpc'
+    group 'com.shiv.grpc'
     version '1.0'
 }
 
