@@ -31,9 +31,10 @@ public final class UserOuterClass {
       "\n\nuser.proto\022\004shiv\032\033google/protobuf/empt" +
       "y.proto\032\036google/protobuf/wrappers.proto\"" +
       "2\n\004User\022\n\n\002id\030\001 \001(\005\022\014\n\004name\030\002 \001(\t\022\020\n\010isA" +
-      "ctive\030\003 \001(\01022\n\013UserService\022#\n\007getUser\022\n." +
-      "shiv.User\032\n.shiv.User\"\000B\026\n\022com.shiv.grpc" +
-      ".userP\001b\006proto3"
+      "ctive\030\003 \001(\0102\\\n\013UserService\022#\n\007getUser\022\n." +
+      "shiv.User\032\n.shiv.User\"\000\022(\n\010getUsers\022\n.sh" +
+      "iv.User\032\n.shiv.User\"\000(\0010\001B\026\n\022com.shiv.gr" +
+      "pc.userP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

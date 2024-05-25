@@ -45,6 +45,37 @@ public final class UserServiceGrpc {
     return getGetUserMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.shiv.grpc.user.User,
+      com.shiv.grpc.user.User> getGetUsersMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "getUsers",
+      requestType = com.shiv.grpc.user.User.class,
+      responseType = com.shiv.grpc.user.User.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+  public static io.grpc.MethodDescriptor<com.shiv.grpc.user.User,
+      com.shiv.grpc.user.User> getGetUsersMethod() {
+    io.grpc.MethodDescriptor<com.shiv.grpc.user.User, com.shiv.grpc.user.User> getGetUsersMethod;
+    if ((getGetUsersMethod = UserServiceGrpc.getGetUsersMethod) == null) {
+      synchronized (UserServiceGrpc.class) {
+        if ((getGetUsersMethod = UserServiceGrpc.getGetUsersMethod) == null) {
+          UserServiceGrpc.getGetUsersMethod = getGetUsersMethod =
+              io.grpc.MethodDescriptor.<com.shiv.grpc.user.User, com.shiv.grpc.user.User>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getUsers"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.shiv.grpc.user.User.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.shiv.grpc.user.User.getDefaultInstance()))
+              .setSchemaDescriptor(new UserServiceMethodDescriptorSupplier("getUsers"))
+              .build();
+        }
+      }
+    }
+    return getGetUsersMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -100,6 +131,13 @@ public final class UserServiceGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetUserMethod(), responseObserver);
     }
 
+    /**
+     */
+    public io.grpc.stub.StreamObserver<com.shiv.grpc.user.User> getUsers(
+        io.grpc.stub.StreamObserver<com.shiv.grpc.user.User> responseObserver) {
+      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getGetUsersMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -109,6 +147,13 @@ public final class UserServiceGrpc {
                 com.shiv.grpc.user.User,
                 com.shiv.grpc.user.User>(
                   this, METHODID_GET_USER)))
+          .addMethod(
+            getGetUsersMethod(),
+            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+              new MethodHandlers<
+                com.shiv.grpc.user.User,
+                com.shiv.grpc.user.User>(
+                  this, METHODID_GET_USERS)))
           .build();
     }
   }
@@ -133,6 +178,14 @@ public final class UserServiceGrpc {
         io.grpc.stub.StreamObserver<com.shiv.grpc.user.User> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetUserMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public io.grpc.stub.StreamObserver<com.shiv.grpc.user.User> getUsers(
+        io.grpc.stub.StreamObserver<com.shiv.grpc.user.User> responseObserver) {
+      return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
+          getChannel().newCall(getGetUsersMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -182,6 +235,7 @@ public final class UserServiceGrpc {
   }
 
   private static final int METHODID_GET_USER = 0;
+  private static final int METHODID_GET_USERS = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -214,6 +268,9 @@ public final class UserServiceGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_GET_USERS:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.getUsers(
+              (io.grpc.stub.StreamObserver<com.shiv.grpc.user.User>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -266,6 +323,7 @@ public final class UserServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new UserServiceFileDescriptorSupplier())
               .addMethod(getGetUserMethod())
+              .addMethod(getGetUsersMethod())
               .build();
         }
       }

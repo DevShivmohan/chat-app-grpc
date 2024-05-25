@@ -19,7 +19,8 @@ public class App {
     }
 
     @PostConstruct
-    public void callRPCService() {
+    public void callRPCService() throws InterruptedException {
         log.info("gRPC response {}", userService.getUser());
+        log.info("gRPC response {}", userService.getUsers());
     }
 }
