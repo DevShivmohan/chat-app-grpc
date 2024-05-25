@@ -1,8 +1,11 @@
 HELP.md
+.gradle
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
-/client-service/target/
+/grpc-client/build/
+/grpc-server/build/
+/grpc-common/build/
 /grpc-service/target/
 /proto/target/
 !**/src/test/**/target/
