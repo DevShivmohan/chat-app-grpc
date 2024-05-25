@@ -65,6 +65,11 @@ private static final long serialVersionUID = 0L;
             isActive_ = input.readBool();
             break;
           }
+          case 32: {
+
+            isActivee_ = input.readBool();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -157,6 +162,17 @@ private static final long serialVersionUID = 0L;
     return isActive_;
   }
 
+  public static final int ISACTIVEE_FIELD_NUMBER = 4;
+  private boolean isActivee_;
+  /**
+   * <code>bool isActivee = 4;</code>
+   * @return The isActivee.
+   */
+  @java.lang.Override
+  public boolean getIsActivee() {
+    return isActivee_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -180,6 +196,9 @@ private static final long serialVersionUID = 0L;
     if (isActive_ != false) {
       output.writeBool(3, isActive_);
     }
+    if (isActivee_ != false) {
+      output.writeBool(4, isActivee_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -199,6 +218,10 @@ private static final long serialVersionUID = 0L;
     if (isActive_ != false) {
       size += com.google.protobuf.CodedOutputStream
         .computeBoolSize(3, isActive_);
+    }
+    if (isActivee_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(4, isActivee_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -221,6 +244,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getName())) return false;
     if (getIsActive()
         != other.getIsActive()) return false;
+    if (getIsActivee()
+        != other.getIsActivee()) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -239,6 +264,9 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + ISACTIVE_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
         getIsActive());
+    hash = (37 * hash) + ISACTIVEE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getIsActivee());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -378,6 +406,8 @@ private static final long serialVersionUID = 0L;
 
       isActive_ = false;
 
+      isActivee_ = false;
+
       return this;
     }
 
@@ -407,6 +437,7 @@ private static final long serialVersionUID = 0L;
       result.id_ = id_;
       result.name_ = name_;
       result.isActive_ = isActive_;
+      result.isActivee_ = isActivee_;
       onBuilt();
       return result;
     }
@@ -464,6 +495,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getIsActive() != false) {
         setIsActive(other.getIsActive());
+      }
+      if (other.getIsActivee() != false) {
+        setIsActivee(other.getIsActivee());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -628,6 +662,37 @@ private static final long serialVersionUID = 0L;
     public Builder clearIsActive() {
       
       isActive_ = false;
+      onChanged();
+      return this;
+    }
+
+    private boolean isActivee_ ;
+    /**
+     * <code>bool isActivee = 4;</code>
+     * @return The isActivee.
+     */
+    @java.lang.Override
+    public boolean getIsActivee() {
+      return isActivee_;
+    }
+    /**
+     * <code>bool isActivee = 4;</code>
+     * @param value The isActivee to set.
+     * @return This builder for chaining.
+     */
+    public Builder setIsActivee(boolean value) {
+      
+      isActivee_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool isActivee = 4;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearIsActivee() {
+      
+      isActivee_ = false;
       onChanged();
       return this;
     }

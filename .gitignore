@@ -3,12 +3,13 @@ HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
-/grpc-client/build/
+grpc-client/build
 /grpc-server/build/
 /grpc-common/build/
 /grpc-service/target/
 /proto/target/
 !**/src/test/**/target/
+.gradle/**
 
 ### STS ###
 .apt_generated
@@ -37,3 +38,5 @@ build/
 
 ### VS Code ###
 .vscode/
+/.gradle/
+/grpc-client/build/

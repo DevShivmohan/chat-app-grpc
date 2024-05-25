@@ -30,4 +30,10 @@ public interface UserOrBuilder extends
    * @return The isActive.
    */
   boolean getIsActive();
+
+  /**
+   * <code>bool isActivee = 4;</code>
+   * @return The isActivee.
+   */
+  boolean getIsActivee();
 }

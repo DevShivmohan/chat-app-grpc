@@ -12,6 +12,7 @@ message User{
     int32 id=1;
     string name=2;
     bool isActive=3;
+    bool isActivee=4;
 }
 
 service UserService {
