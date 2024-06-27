@@ -1,3 +1,18 @@
+chat:
+  service:
+    crypto-secret: Shiv@345gs2gTr2rswt242rtr3245w454352435423fgfdsrtrqw54
 grpc:
   server:
     port: 8090
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/chat
+    username: shiv
+    password: Shiv@123
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
