@@ -2,20 +2,27 @@ syntax = "proto3";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
 
 package shiv;
 
 option java_package = "com.shiv.grpc.user";
 option java_multiple_files = true;
 
-message User{
-    int32 id=1;
+message UserGrpcRequest{
+    string token=1;
+}
+
+message UserGrpcResponse{
+    string uuid=1;
     string name=2;
-    bool isActive=3;
-    bool isActivee=4;
+    string username=3;
+    string email=4;
+    google.protobuf.Timestamp createdAt = 5;
+    google.protobuf.Timestamp updatedAt = 6;
+
 }
 
 service UserService {
-    rpc getUser(User) returns(User){}
-    rpc getUsers(stream User) returns(stream User){}
+    rpc getUser(UserGrpcRequest) returns(UserGrpcResponse){}
 }

@@ -10,8 +10,6 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -31,8 +29,7 @@ import java.util.UUID;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "uuid", nullable = false, updatable = false)
+    @Column(name = "uuid", nullable = false, updatable = false,unique = true)
     private String uuid;
     @Column(name = "name", nullable = false)
     private String name;

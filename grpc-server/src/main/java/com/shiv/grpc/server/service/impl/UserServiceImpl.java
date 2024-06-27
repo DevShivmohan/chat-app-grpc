@@ -1,46 +1,43 @@
 package com.shiv.grpc.server.service.impl;
 
+import com.shiv.grpc.server.beans.BeanDataModel;
+import com.shiv.grpc.server.dto.UserRequestDto;
+import com.shiv.grpc.server.entity.User;
+import com.shiv.grpc.server.global.GenericException;
+import com.shiv.grpc.server.mapper.ModelMapperUtil;
+import com.shiv.grpc.server.repository.UserRepository;
 import com.shiv.grpc.server.service.UserService;
-import com.shiv.grpc.user.User;
+import com.shiv.grpc.server.util.CryptoUtil;
+import com.shiv.grpc.user.UserGrpcRequest;
+import com.shiv.grpc.user.UserGrpcResponse;
 import com.shiv.grpc.user.UserServiceGrpc;
 import io.grpc.stub.StreamObserver;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.http.HttpStatus;
 
 @GrpcService
 @Slf4j
+@AllArgsConstructor
 public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase implements UserService {
+    private final UserRepository userRepository;
+    private final BeanDataModel beanDataModel;
+
     @Override
-    public void getUser(User request, StreamObserver<User> responseObserver) {
-        log.info("gRPC request {}",request);
-        responseObserver.onNext(User.newBuilder().setId(1).setName("Shiv").setIsActive(true).build());
+    public void getUser(UserGrpcRequest request, StreamObserver<UserGrpcResponse> responseObserver) {
+        responseObserver.onNext(UserGrpcResponse.newBuilder().build());
         responseObserver.onCompleted();
     }
 
     @Override
-    public StreamObserver<User> getUsers(StreamObserver<User> responseObserver) {
-        return new StreamObserver<>() {
-            private final List<User> usersRequest = new ArrayList<>();
-
-            @Override
-            public void onNext(User user) {
-                usersRequest.add(user);
-            }
-
-            @Override
-            public void onError(Throwable throwable) {
-                responseObserver.onError(throwable);
-            }
-
-            @Override
-            public void onCompleted() {
-                log.info("All usersRequest {}", usersRequest);
-                usersRequest.forEach(responseObserver::onNext);
-                responseObserver.onCompleted();
-            }
-        };
+    public User addUser(UserRequestDto userRequestDto) {
+        final var dbExistUser = userRepository.findByEmailOrUsername(userRequestDto.getEmail(), userRequestDto.getUsername());
+        if (dbExistUser.isPresent()) {
+            throw new GenericException(HttpStatus.IM_USED.value(), "Duplicate user found");
+        }
+        final User user = ModelMapperUtil.map(userRequestDto, User.class);
+        user.setPassword(CryptoUtil.encrypt(beanDataModel.getEncryptor(), user.getPassword()));
+        return userRepository.save(user);
     }
 }

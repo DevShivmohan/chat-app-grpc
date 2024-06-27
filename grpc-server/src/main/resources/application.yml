@@ -1,3 +1,6 @@
+server:
+  servlet:
+    context-path: /dev-chat
 chat:
   service:
     crypto-secret: Shiv@345gs2gTr2rswt242rtr3245w454352435423fgfdsrtrqw54
