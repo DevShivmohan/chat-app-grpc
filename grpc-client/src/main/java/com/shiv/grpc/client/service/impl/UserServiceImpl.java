@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserGrpcResponse getUser() {
         try{
-            final var user=userServiceBlockingStub.getUser(UserGrpcRequest.newBuilder().setToken("Bearer tytw").build());
+            final var user=userServiceBlockingStub.validateUser(UserGrpcRequest.newBuilder().setToken("Bearer tytw").build());
             log.info("User info response {}",user);
             return user;
         }catch (StatusRuntimeException statusRuntimeException){

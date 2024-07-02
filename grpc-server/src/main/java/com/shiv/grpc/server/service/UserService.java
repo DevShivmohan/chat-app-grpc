@@ -7,4 +7,5 @@ public interface UserService {
 //    void getUser(User request, StreamObserver<User> responseObserver);
 //    StreamObserver<User> getUsers(StreamObserver<User> responseObserver);
     User addUser(UserRequestDto userRequestDto);
+    User getUser(String username);
 }

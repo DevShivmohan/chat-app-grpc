@@ -26,7 +26,7 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase impleme
     private final BeanDataModel beanDataModel;
 
     @Override
-    public void getUser(UserGrpcRequest request, StreamObserver<UserGrpcResponse> responseObserver) {
+    public void validateUser(UserGrpcRequest request, StreamObserver<UserGrpcResponse> responseObserver) {
 //        responseObserver.onNext(UserGrpcResponse.newBuilder().setName("Shiv").build());
         responseObserver.onError((Status.NOT_FOUND.withDescription("User not found"))
                 .asRuntimeException());
@@ -42,5 +42,11 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase impleme
         final User user = ModelMapperUtil.map(userRequestDto, User.class);
         user.setPassword(CryptoUtil.encrypt(beanDataModel.getEncryptor(), user.getPassword()));
         return userRepository.save(user);
+    }
+
+    @Override
+    public User getUser(String username) {
+        return userRepository.findByEmailOrUsername(username)
+                .orElseThrow(() -> new GenericException(HttpStatus.NOT_FOUND.value(), "User not found"));
     }
 }
