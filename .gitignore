@@ -10,7 +10,7 @@ grpc-client/build
 /proto/target/
 !**/src/test/**/target/
 .gradle/**
-
+.idea/
 ### STS ###
 .apt_generated
 .classpath

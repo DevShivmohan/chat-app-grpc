@@ -11,6 +11,7 @@ import com.shiv.grpc.server.util.CryptoUtil;
 import com.shiv.grpc.user.UserGrpcRequest;
 import com.shiv.grpc.user.UserGrpcResponse;
 import com.shiv.grpc.user.UserServiceGrpc;
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +27,9 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase impleme
 
     @Override
     public void getUser(UserGrpcRequest request, StreamObserver<UserGrpcResponse> responseObserver) {
-        responseObserver.onNext(UserGrpcResponse.newBuilder().build());
+//        responseObserver.onNext(UserGrpcResponse.newBuilder().setName("Shiv").build());
+        responseObserver.onError((Status.NOT_FOUND.withDescription("User not found"))
+                .asRuntimeException());
         responseObserver.onCompleted();
     }
 

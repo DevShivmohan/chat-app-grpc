@@ -12,8 +12,4 @@ public class AppContext {
     public static void setRequestId(String requestId) {
         requestIdThreadSafe.set(requestId);
     }
-
-    public static void clean() {
-        requestIdThreadSafe.remove();
-    }
 }

@@ -1,8 +1,11 @@
 package com.shiv.grpc.server.mapper;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ModelMapperUtil {
     private static final ModelMapper modelMapper = new ModelMapper();
 
