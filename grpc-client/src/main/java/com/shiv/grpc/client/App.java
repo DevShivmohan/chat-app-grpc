@@ -18,7 +18,7 @@ public class App {
         SpringApplication.run(App.class, args);
     }
 
-    @PostConstruct
+//    @PostConstruct
     public void callRPCService() throws InterruptedException {
         log.info("gRPC response {}", userService.getUser());
 //        log.info("gRPC response {}", userService.getUsers());

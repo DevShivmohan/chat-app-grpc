@@ -27,9 +27,9 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase impleme
 
     @Override
     public void validateUser(UserGrpcRequest request, StreamObserver<UserGrpcResponse> responseObserver) {
-//        responseObserver.onNext(UserGrpcResponse.newBuilder().setName("Shiv").build());
-        responseObserver.onError((Status.NOT_FOUND.withDescription("User not found"))
-                .asRuntimeException());
+        responseObserver.onNext(UserGrpcResponse.newBuilder().setName("Shiv").build());
+//        responseObserver.onError((Status.NOT_FOUND.withDescription("User not found"))
+//                .asRuntimeException());
         responseObserver.onCompleted();
     }
 
